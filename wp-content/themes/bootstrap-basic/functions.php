@@ -179,8 +179,7 @@ function pasticco() {
         'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
         'capability_type' => 'post', //
         'query_var' => true,
-        'rewite' => array('slug' => 'pasticco'),
-        'supports' => array('title', 'editor', 'author', 'thumnail', 'expert', 'comments')
+        'rewite' => array('slug' => 'pasticco')
     );
 
     register_post_type('pasticco', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
@@ -238,8 +237,7 @@ function tacgia() {
         'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
         'capability_type' => 'post', //
         'query_var' => true,
-        'rewite' => array('slug' => 'article-author'),
-        'supports' => array('title', 'editor', 'author', 'thumnail', 'expert', 'comments')
+        'rewite' => array('slug' => 'article-author')
     );
 
     register_post_type('article-author', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
