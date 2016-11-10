@@ -100,7 +100,7 @@
                 </div>
                 <div class="row search pull-right" rol="search">
 
-                    <form class="navbar-form" role="search" action="<php echo site_url('/'); ?>" method="get">
+                    <form class="navbar-form" role="search" action="<?php echo home_url(); ?>" method="get">
                         <div class="form-group pull-left">
                             <input type="text" name="s" class="form-control" placeholder="Tìm kiếm ..."/>
                         </div>
