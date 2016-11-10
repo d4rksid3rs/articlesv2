@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Admin New Post
+  Plugin Name: User New Post
   Plugin URI: http://teachingyou.net
   Description: This plugin is based on a tutorial from teachingyou.net.
   Version: 1.0
@@ -10,10 +10,10 @@
  */
 
 // register post type for custom posts
-function generate_post_select($select_id, $post_type, $selected = 0) {
+function generate_post($select_id, $post_type, $selected = 0) {
     $post_type_object = get_post_type_object($post_type);
     $label = $post_type_object->label;
-    $posts = get_posts(array('post_type' => $post_type, 'post_status' => 'publish', 'suppress_filters' => false, 'posts_per_page' => -1));
+    $posts = get_posts(array('post_type' => $post_type, 'post_status' => 'pending', 'suppress_filters' => false, 'posts_per_page' => -1));
     echo '<select name="' . $select_id . '" id="' . $select_id . '">';
 //    echo '<option value = "" >All ' . $label . ' </option>';
     foreach ($posts as $post) {
@@ -22,7 +22,7 @@ function generate_post_select($select_id, $post_type, $selected = 0) {
     echo '</select>';
 }
 
-function admin_post_frontend() {
+function user_post_frontend() {
     ?>
     <form id="custom-post-type" name="custom-post-type" method="post" action="" enctype="multipart/form-data">
 
@@ -31,7 +31,11 @@ function admin_post_frontend() {
             <input type="text" id="title" value="" tabindex="1" size="20" name="title" />
 
         </p> 
+        <p><label for="title">Thêm tác giả</label><br />
 
+            <input type="text" id="nguoi-viet" value="" tabindex="1" size="20" name="nguoi-viet" />
+
+        </p> 
         <p><label for="title">Tác giả</label><br />
             <?php generate_post_select('tac-gia', 'article-author', 0) ?>
 
@@ -75,9 +79,64 @@ function admin_post_frontend() {
     }
 }
 
-add_shortcode('admin-post', 'admin_post_frontend');
+add_shortcode('user-post', 'user_post_frontend');
 
-function save_post_data() {
+function guest_post_frontend() {
+    ?>
+    <form id="custom-post-type" name="custom-post-type" method="post" action="" enctype="multipart/form-data">
+
+        <p><label for="title">Tên bài</label><br />
+
+            <input type="text" id="title" value="" tabindex="1" size="20" name="title" />
+
+        </p> 
+        <p><label for="title">Thêm tác giả</label><br />
+
+            <input type="text" id="nguoi_viet" value="" tabindex="1" size="20" name="nguoi_viet" />
+
+        </p> 
+        <p>
+            <label for="title">Thể loại</label><br />
+            <?php wp_dropdown_categories('show_option_none=&tab_index=4&taxonomy=category&hide_empty=0'); ?>
+        </p>
+
+        <p><label for="description">Nội dung</label><br />
+
+    <!--            <textarea id="description" tabindex="3" name="description" cols="50" rows="6"></textarea>-->
+            <?php
+            $old_description = get_post_meta($post->ID, 'description', true);
+            $editor_id = 'description';
+            $settings = array('media_buttons' => false);
+
+            wp_editor($old_description, $editor_id, $settings);
+            ?>
+
+        </p>
+        <p><label for="description">Upload</label><br />
+
+            <input type="file" name="thumbnail" id="thumbnail">
+
+        </p>
+
+
+        <p align="right"><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
+
+        <input type="hidden" name="post-type" id="post-type" value="custom_posts" />
+
+        <input type="hidden" name="action" value="custom_posts" />
+
+        <?php wp_nonce_field('name_of_my_action', 'name_of_nonce_field'); ?>
+
+    </form>
+    <?php
+    if ($_POST) {
+        save_post_data();
+    }
+}
+
+add_shortcode('guest-post', 'guest_post_frontend');
+
+function save_post() {
 //    var_dump($_POST);die;
     if (empty($_POST) || !wp_verify_nonce($_POST['name_of_nonce_field'], 'name_of_my_action')) {
         print 'Sorry, your nonce did not verify.';
@@ -104,13 +163,18 @@ function save_post_data() {
         } else {
             $tacgia = 0;
         }
+        if (isset($_POST['nguoi-viet'])) {
+            $tacgia = $_POST['nguoi-viet'];
+        } else {
+            $tacgia = 0;
+        }
 
         // Add the content of the form to $post as an array
         $post = array(
             'post_title' => wp_strip_all_tags($title),
             'post_content' => $description,
             'post_category' => $category, // Usable for custom taxonomies too
-            'post_status' => 'publish', // Choose: publish, preview, future, etc.
+            'post_status' => 'pending', // Choose: publish, preview, future, etc.
             'post_type' => 'pasticco'  // Use a custom post type if you want to
         );
         $new_post_id = wp_insert_post($post);  // http://codex.wordpress.org/Function_Reference/wp_insert_post

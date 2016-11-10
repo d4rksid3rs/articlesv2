@@ -96,3 +96,4 @@ function checkTime(i)
         }
         return i;
     }
+$('#tac-gia').chosen();
