@@ -127,8 +127,7 @@ function save_post_data() {
             update_post_meta($new_post_id, '_thumbnail_id', $attach_id);
         }
         add_post_meta($new_post_id, "tac_gia", $tacgia); // Add Custom field
-        $location = home_url(); // redirect location, should be login page 
-
+        $location = get_permalink(45); // redirect location, should be login page         
         echo "<meta http-equiv='refresh' content='0;url=$location' />";
         exit;
     } // end IF
