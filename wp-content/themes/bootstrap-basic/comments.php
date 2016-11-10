@@ -116,10 +116,7 @@ if (post_password_required()) {
 							'<div class="col-md-10">' . 
 							'<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea>' . 
 							'</div>' . 
-							'</div>',
-			'comment_notes_after' => '<p class="help-block">' . 
-							sprintf(__('You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'bootstrap-basic'), $comment_allowed_tags) . 
-							'</p>'
+							'</div>'
 		)
 	); 
 	

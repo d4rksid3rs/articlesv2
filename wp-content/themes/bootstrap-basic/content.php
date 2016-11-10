@@ -1,13 +1,13 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+<!--	<header class="entry-header">
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 
 		<?php if ('post' == get_post_type()) { ?> 
 		<div class="entry-meta">
 			<?php bootstrapBasicPostOn(); ?> 
-		</div><!-- .entry-meta -->
+		</div> .entry-meta 
 		<?php } //endif; ?> 
-	</header><!-- .entry-header -->
+	</header> .entry-header -->
 
 	
 	<?php if (is_search()) { // Only display Excerpts for Search ?> 
@@ -34,7 +34,7 @@
 	<?php } //endif; ?> 
 
 	
-	<footer class="entry-meta">
+<!--	<footer class="entry-meta">
 		<?php if ('post' == get_post_type()) { // Hide category and tag text for pages on Search ?> 
 		<div class="entry-meta-category-tag">
 			<?php
@@ -56,7 +56,7 @@
 				<?php echo bootstrapBasicTagsList($tags_list); ?> 
 			</span>
 			<?php } // End if $tags_list ?> 
-		</div><!--.entry-meta-category-tag-->
+		</div>.entry-meta-category-tag
 		<?php } // End if 'post' == get_post_type() ?> 
 
 		<div class="entry-meta-comment-tools">
@@ -65,6 +65,6 @@
 			<?php } //endif; ?> 
 
 			<?php bootstrapBasicEditPostLink(); ?> 
-		</div><!--.entry-meta-comment-tools-->
-	</footer><!-- .entry-meta -->
+		</div>.entry-meta-comment-tools
+	</footer> .entry-meta -->
 </article><!-- #post-## -->

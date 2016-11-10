@@ -2,7 +2,6 @@
    Author's custom styles
    ========================================================================== */
 @import 'flexvideo.css';
-@import 'fix-bootstrap.css';
 
 
 
@@ -13,15 +12,15 @@ img.aligncenter {
 
 
 
-/* ancient-browser-alert error */
-.ancient-browser-alert {
+/* chromeframe error */
+.chromeframe {
 	background: #a00;
 	color: #faa;
 	display: block;
 	padding: 3px 0;
 	text-align: center;
 }
-.ancient-browser-alert a {
+.chromeframe a {
 	color: #fff;
 	text-decoration: underline;
 }
