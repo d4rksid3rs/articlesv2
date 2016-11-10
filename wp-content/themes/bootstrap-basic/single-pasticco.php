@@ -20,7 +20,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
             <div class="title">
                 <h1><?php the_title(); ?></h1>
                 <?php $user_ID = get_current_user_id(); ?>
-                <?php $edit_post = get_permalink(81) . '?gform_post_id=' . $post->ID; ?>
+                <?php $edit_post = get_permalink(get_page_by_path( 'sua-bai' )) . '?edit=' . $post->ID; ?>
                 <?php if (is_super_admin($user_ID)) : ?>
                                                                                                                                                                                                                 <!--<a class = "btn btn-success" href="<?php echo esc_url(get_permalink(551)); ?>?&edit=<?php echo $post->ID; ?>">Sửa</a >-->
                     <a class = "btn btn-success" href="<?php echo $edit_post; ?>">Sửa</a >

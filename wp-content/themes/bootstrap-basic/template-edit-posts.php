@@ -10,7 +10,7 @@ if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
 
             if ($_GET['edit'] == $post->ID) {
                 $current_post = $post->ID;
-
+//                $url = the_permalink();
                 $title = get_the_title();
                 $content = get_the_content();
                 $tac_gia = get_post_meta($post->ID, 'tac_gia');
@@ -25,68 +25,12 @@ if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
 
     endwhile;
 endif;
-global $current_post;
-$postTitleError = '';
-//echo $image;die;
-if (empty($_POST) || !wp_verify_nonce($_POST['name_of_nonce_field'], 'name_of_my_action')) {
-//    echo 1;die;
-    // Do some minor form validation to make sure there is content
-    if (isset($_POST['title'])) {
-        $title = $_POST['title'];
-    } else {
-        $title = '';
-    }
-    if (isset($_POST['description'])) {
-        $description = $_POST['description'];
-    } else {
-        $description = '';
-    }
-    if (isset($_POST['cat'])) {
-        $category = array($_POST['cat']);
-    } else {
-        $category = 0;
-    }
-    if (isset($_POST['tac-gia'])) {
-        $tacgia = $_POST['tac-gia'];
-    } else {
-        $tacgia = 0;
-    }
-
-    // Add the content of the form to $post as an array
-    $post = array(
-        'post_title' => wp_strip_all_tags($title),
-        'post_content' => $description,
-        'post_category' => $category, // Usable for custom taxonomies too
-        'post_status' => 'publish', // Choose: publish, preview, future, etc.
-        'post_type' => 'pasticco'  // Use a custom post type if you want to
-    );
-    $new_post_id = wp_insert_post($post);  // http://codex.wordpress.org/Function_Reference/wp_insert_post
-    if (!function_exists('wp_generate_attachment_metadata')) {
-        require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-        require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-        require_once(ABSPATH . "wp-admin" . '/includes/media.php');
-    }
-//        var_dump($_FILES);die;
-    if ($_FILES) {
-        foreach ($_FILES as $file => $array) {
-            if ($_FILES[$file]['error'] !== UPLOAD_ERR_OK) {
-                return "upload error : " . $_FILES[$file]['error'];
-            }
-            $attach_id = media_handle_upload($file, $new_post_id);
-        }
-    }
-    if ($attach_id > 0) {
-        //and if you want to set that image as Post  then use:
-        update_post_meta($new_post_id, '_thumbnail_id', $attach_id);
-    }
-    add_post_meta($new_post_id, "tac_gia", $tacgia); // Add Custom field
-    $location = get_permalink(45); // redirect location, should be login page         
-    echo "<meta http-equiv='refresh' content='0;url=$location' />";
-    exit;
+if ($_POST) {
+    update_post_data($current_post);
 }
-?>
 
-<?php
+
+
 /**
  * Template for displaying pages
  * 
@@ -209,3 +153,66 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
     <?php get_sidebar('right'); ?> 
 <?php endif; ?>
 <?php get_footer(); ?> 
+<?php 
+function update_post_data($id) {
+    if (empty($_POST) || !wp_verify_nonce($_POST['name_of_nonce_field'], 'name_of_my_action')) {
+        print 'Sorry, your nonce did not verify.';
+        exit;
+    } else {        
+        // Do some minor form validation to make sure there is content
+        if (isset($_POST['title'])) {
+            $title = $_POST['title'];
+        } else {
+            $title = '';
+        }
+        if (isset($_POST['description'])) {
+            $description = $_POST['description'];
+        } else {
+            $description = '';
+        }
+        if (isset($_POST['cat'])) {
+            $category = array($_POST['cat']);
+        } else {
+            $category = 0;
+        }
+        if (isset($_POST['tac-gia'])) {
+            $tacgia = $_POST['tac-gia'];
+        } else {
+            $tacgia = 0;
+        }                
+        // Add the content of the form to $post as an array
+        $post = array(
+            'ID' => $id,
+            'post_title' => wp_strip_all_tags($title),
+            'post_content' => $description,
+            'post_category' => $category, // Usable for custom taxonomies too
+            'post_status' => 'publish', // Choose: publish, preview, future, etc.
+            'post_type' => 'pasticco'  // Use a custom post type if you want to
+        );
+        $new_post_id = wp_update_post($post);  // http://codex.wordpress.org/Function_Reference/wp_insert_post 
+        add_post_meta($new_post_id, "tac_gia", $tacgia); // Add Custom field
+        if (!function_exists('wp_generate_attachment_metadata')) {
+            require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+            require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+            require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+        }
+//        var_dump($_FILES);die;
+        if ($_FILES) {
+            foreach ($_FILES as $file => $array) {
+                if ($_FILES[$file]['error'] !== UPLOAD_ERR_OK) {
+                    return "upload error : " . $_FILES[$file]['error'];
+                }
+                $attach_id = media_handle_upload($file, $new_post_id);
+            }
+        }
+        if ($attach_id > 0) {
+            //and if you want to set that image as Post  then use:
+            update_post_meta($new_post_id, '_thumbnail_id', $attach_id);
+        }
+        
+        $location = esc_url( get_permalink($id)); // redirect location, should be login page   
+        echo "<meta http-equiv='refresh' content='0;url=$location' />";
+        exit;
+    } // end IF
+}
+?>

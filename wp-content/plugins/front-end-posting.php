@@ -75,8 +75,7 @@ function save_post_data() {
     if (empty($_POST) || !wp_verify_nonce($_POST['name_of_nonce_field'], 'name_of_my_action')) {
         print 'Sorry, your nonce did not verify.';
         exit;
-    } else {
-
+    } else {        
         // Do some minor form validation to make sure there is content
         if (isset($_POST['title'])) {
             $title = $_POST['title'];
