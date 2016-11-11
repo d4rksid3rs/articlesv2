@@ -97,6 +97,9 @@ $main_column_size = 9;
                                         $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true);
                                         echo get_the_title($tac_gia_id);
                                         ?>
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <img src="<?php the_post_thumbnail_url(); ?>" title="<?php the_title_attribute(); ?>"/>
+                                        <?php endif; ?>
                                     </a></b></span>
                             <p><small><i>Bài viết được đẳng bởi:</i><b>
                                     <?php
