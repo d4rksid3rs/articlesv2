@@ -337,3 +337,36 @@ function show_publish_button() {
 <input class="btn btn-success" id="submit" type="submit" name="submit" value="Phê duyệt" /></form>';
     }
 }
+//function to update post status
+function change_post_status($post_id, $status) {
+    $current_post = get_post($post_id, 'ARRAY_A');
+    $arg = array(
+        'ID' => $post_id,
+        'post_author' => $current_post['post_author'],
+        'post_status' => $status
+    );
+    remove_action('post_updated', 'wp_save_post_revision');
+    wp_update_post($arg);
+    add_action('post_updated', 'wp_save_post_revision');
+}
+
+if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
+    if (isset($_POST['pid']) && !empty($_POST['pid'])) {
+        change_post_status((int) $_POST['pid'], 'publish');
+    }
+}
+
+// search custom post type
+function searchfilter($query) {
+    if ($query->is_search && !is_admin()) {
+        if (isset($_GET['post_type'])) {
+            $type = $_GET['post_type'];
+            if ($type == 'pasticco') {
+                $query->set('post_type', array('pasticco'));
+            }
+        }
+    }
+    return $query;
+}
+
+add_filter('pre_get_posts', 'searchfilter');
