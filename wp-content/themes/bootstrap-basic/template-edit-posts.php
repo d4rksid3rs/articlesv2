@@ -75,7 +75,14 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
 
             <p><label for="description">Nội dung</label><br />
 
-                <textarea id="description" tabindex="3" name="description" cols="50" rows="6"><?php echo $content; ?></textarea>
+            <!--                <textarea id="description" tabindex="3" name="description" cols="50" rows="6"><?php echo $content; ?></textarea>-->
+                <?php
+//                $old_description = get_post_meta($post->ID, 'description', true);
+//                echo $content;die;
+                $editor_id = 'description';
+                $settings = array('media_buttons' => false );
+                wp_editor($content, $editor_id, $settings);
+                ?>
 
             </p>
             <p><label for="description">Upload</label><br />
@@ -127,7 +134,14 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
 
             <p><label for="description">Nội dung</label><br />
 
-                <textarea id="description" tabindex="3" name="description" cols="50" rows="6"><?php echo $content; ?></textarea>
+            <!--                <textarea id="description" tabindex="3" name="description" cols="50" rows="6"><?php echo $content; ?></textarea>-->
+                <?php
+                $old_description = get_post_meta($post->ID, 'description', true);
+                $editor_id = 'description';
+                $settings = array('media_buttons' => false);
+                $content = get_the_content('description');
+                wp_editor($old_description, $editor_id, $settings, $content);
+                ?>
 
             </p>
             <p><label for="description">Upload</label><br />
@@ -153,12 +167,13 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
     <?php get_sidebar('right'); ?> 
 <?php endif; ?>
 <?php get_footer(); ?> 
-<?php 
+<?php
+
 function update_post_data($id) {
     if (empty($_POST) || !wp_verify_nonce($_POST['name_of_nonce_field'], 'name_of_my_action')) {
         print 'Sorry, your nonce did not verify.';
         exit;
-    } else {        
+    } else {
         // Do some minor form validation to make sure there is content
         if (isset($_POST['title'])) {
             $title = $_POST['title'];
@@ -179,7 +194,7 @@ function update_post_data($id) {
             $tacgia = $_POST['tac-gia'];
         } else {
             $tacgia = 0;
-        }                
+        }
         // Add the content of the form to $post as an array
         $post = array(
             'ID' => $id,
@@ -209,8 +224,8 @@ function update_post_data($id) {
             //and if you want to set that image as Post  then use:
             update_post_meta($new_post_id, '_thumbnail_id', $attach_id);
         }
-        
-        $location = esc_url( get_permalink($id)); // redirect location, should be login page   
+
+        $location = esc_url(get_permalink($id)); // redirect location, should be login page   
         echo "<meta http-equiv='refresh' content='0;url=$location' />";
         exit;
     } // end IF

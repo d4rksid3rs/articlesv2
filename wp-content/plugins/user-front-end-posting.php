@@ -33,7 +33,7 @@ function user_post_frontend() {
         </p> 
         <p><label for="title">Thêm tác giả</label><br />
 
-            <input type="text" id="nguoi-viet" value="" tabindex="1" size="20" name="nguoi-viet" />
+            <input type="text" id="nguoi_viet" value="" tabindex="1" size="20" name="nguoi_viet" />
 
         </p> 
         <p><label for="title">Tác giả</label><br />
@@ -47,7 +47,7 @@ function user_post_frontend() {
 
         <p><label for="description">Nội dung</label><br />
 
-    <!--            <textarea id="description" tabindex="3" name="description" cols="50" rows="6"></textarea>-->
+        <!--            <textarea id="description" tabindex="3" name="description" cols="50" rows="6"></textarea>-->
             <?php
             $old_description = get_post_meta($post->ID, 'description', true);
             $editor_id = 'description';
@@ -64,7 +64,7 @@ function user_post_frontend() {
         </p>
 
 
-        <p align="right"><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
+        <p><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
 
         <input type="hidden" name="post-type" id="post-type" value="custom_posts" />
 
@@ -75,7 +75,7 @@ function user_post_frontend() {
     </form>
     <?php
     if ($_POST) {
-        save_post_data();
+        save_post();
     }
 }
 
@@ -102,7 +102,7 @@ function guest_post_frontend() {
 
         <p><label for="description">Nội dung</label><br />
 
-    <!--            <textarea id="description" tabindex="3" name="description" cols="50" rows="6"></textarea>-->
+        <!--            <textarea id="description" tabindex="3" name="description" cols="50" rows="6"></textarea>-->
             <?php
             $old_description = get_post_meta($post->ID, 'description', true);
             $editor_id = 'description';
@@ -130,7 +130,7 @@ function guest_post_frontend() {
     </form>
     <?php
     if ($_POST) {
-        save_post_data();
+        save_post();
     }
 }
 
@@ -163,8 +163,8 @@ function save_post() {
         } else {
             $tacgia = 0;
         }
-        if (isset($_POST['nguoi-viet'])) {
-            $tacgia = $_POST['nguoi-viet'];
+        if (isset($_POST['nguoi_viet'])) {
+            $tacgia = $_POST['nguoi_viet'];
         } else {
             $tacgia = 0;
         }
@@ -196,7 +196,7 @@ function save_post() {
             //and if you want to set that image as Post  then use:
             update_post_meta($new_post_id, '_thumbnail_id', $attach_id);
         }
-        add_post_meta($new_post_id, "tac_gia", $tacgia); // Add Custom field
+        add_post_meta($new_post_id, "nguoi_viet", $tacgia); // Add Custom field
         $location = get_permalink(45); // redirect location, should be login page         
         echo "<meta http-equiv='refresh' content='0;url=$location' />";
         exit;

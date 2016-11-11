@@ -60,7 +60,7 @@ function admin_post_frontend() {
         </p>
 
 
-        <p align="right"><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
+        <p><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
 
         <input type="hidden" name="post-type" id="post-type" value="custom_posts" />
 

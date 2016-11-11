@@ -61,7 +61,7 @@ $main_column_size = 9;
                                 <p>
                                     <b>
                                         <?php
-                                        $nguoi_viet_id = get_post_meta(the_ID(), 'nguoi_viet', true);                                    
+                                        $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);                                    
                                         echo $nguoi_viet_id;
                                         ?>
                                     </b>

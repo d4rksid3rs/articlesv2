@@ -12,7 +12,7 @@ get_header();
 $main_column_size = 12;
 global $post;
 ?> 
-<?php // get_sidebar('left');                                         ?> 
+<?php // get_sidebar('left');                                               ?> 
 <div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
     <main id="main" class="site-main" role="main">  
         <?php
@@ -39,32 +39,36 @@ global $post;
                 <?php if ($custom_query->have_posts()) : ?>
                     <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                         <div class="col-md-3">
-                            <a class="title" href="<?php the_permalink() ?>"> <h4 class="uppercase"><?php the_title() ?></h4></a>
-                            <span class="author"><b> <a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>"><?php $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true); ?>
-                                        <?php
-                                        $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
-                                        if ($tac_gia_id):
-                                            echo get_the_title($tac_gia_id);
-                                        elseif ($nguoi_viet_id) :
-                                            echo $nguoi_viet_id;
-                                        else:
-                                            echo 'Không có tác giả';
-                                            ?>
-                                        <?php endif; ?>                                       
-                                    </a></b></span>
-                            <p><small><i>Bài viết được đăng bởi:</i><b>
-                                        <?php
-                                        $a_id = $post->post_author;
-                                        $a_name = get_the_author_meta('display_name', $a_id);
-                                        echo $a_name;
-                                        ?></b></small></p>
-                            <div class="pt-cv-content">
+                            <div class="header-title">
+                                <a class="title" href="<?php the_permalink() ?>"> <h4 class="uppercase"><?php the_title() ?></h4></a>
+                                <span class="author"><b> <a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>"><?php $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true); ?>
+                                            <?php
+                                            $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
+                                            if ($tac_gia_id):
+                                                echo get_the_title($tac_gia_id);
+                                            elseif ($nguoi_viet_id) :
+                                                echo $nguoi_viet_id;
+                                            else:
+                                                echo 'Không có tác giả';
+                                                ?>
+                                            <?php endif; ?>                                       
+                                        </a></b></span>
+                                <p><small><i>Bài viết được đăng bởi:</i><b>
+                                            <?php
+                                            $a_id = $post->post_author;
+                                            $a_name = get_the_author_meta('display_name', $a_id);
+                                            echo $a_name;
+                                            ?></b></small></p>
+                            </div>
+                            <div class="post-thumbnail">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                         <img src="<?php the_post_thumbnail_url(); ?>"/>
                                     </a>
                                 <?php endif; ?>
-                                <br />
+                            </div>
+                            <div class="pt-cv-content">
+<!--                                <br />-->
                                 <?php
                                 $i ++;
                                 $excerpt = get_the_excerpt();
@@ -109,41 +113,49 @@ global $post;
                         <div class="category section">
                             <h3 ><a class="uppercase" href="<?php echo $cat; ?>"><?php echo '' . $term->name; ?></a></h3>
                             <?php while ($my_query->have_posts()) : $my_query->the_post(); ?>
-                                                                                                                                                                                                            <!--        <li><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></li> -->
+                                                                                                                                                                                                                        <!--        <li><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></li> -->
                                 <div class="col-md-3">
-                                    <a class="title" href="<?php the_permalink() ?>"> <h4><?php the_title() ?></h4></a>
-                                    <span class="author"><b><a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>">
-                                                <?php
-                                                $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true);
-                                                $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
-                                                if ($tac_gia_id):
-                                                    echo get_the_title($tac_gia_id);
-                                                elseif ($nguoi_viet_id):
-                                                    echo $nguoi_viet_id;
-                                                else :
-                                                    echo 'Không có tác giả';
-                                                endif;
-                                                ?>
-                                            </a></b></span>
-                                    <p><small><i>Bài viết được đẳng bởi:</i><b>
-                                                <?php
-                                                $a_id = $post->post_author;
-                                                $a_name = get_the_author_meta('display_name', $a_id);
-                                                echo $a_name;
-                                                ?></b></small></p>
-                                    <div class="pt-cv-content">
+                                    <div class="header-title">
+                                        <a class="title" href="<?php the_permalink() ?>"> <h4><?php the_title() ?></h4></a>
+                                        <span class="author"><b><a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>">
+                                                    <?php
+                                                    $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true);
+                                                    $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
+                                                    if ($tac_gia_id):
+                                                        echo get_the_title($tac_gia_id);
+                                                    elseif ($nguoi_viet_id):
+                                                        echo $nguoi_viet_id;
+                                                    else :
+                                                        echo 'Không có tác giả';
+                                                    endif;
+                                                    ?>
+                                                </a></b></span>
+                                        <p><small><i>Bài viết được đẳng bởi:</i><b>
+                                                    <?php
+                                                    $a_id = $post->post_author;
+                                                    $a_name = get_the_author_meta('display_name', $a_id);
+                                                    echo $a_name;
+                                                    ?></b></small></p>
+                                    </div>
+                                    <div class="post-thumbnail">
                                         <?php if (has_post_thumbnail()) : ?>
                                             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                                 <img src="<?php the_post_thumbnail_url(); ?>"/>
                                             </a>
                                         <?php endif; ?>
-                                        <br />
+                                    </div>
+                                    <div class="pt-cv-content">
+<!--                                        <?php if (has_post_thumbnail()) : ?>
+                                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                                <img src="<?php the_post_thumbnail_url(); ?>"/>
+                                            </a>
+                                        <?php endif; ?>
+                                        <br />-->
                                         <?php
                                         $i ++;
                                         $excerpt = get_the_excerpt();
                                         echo string_limit_words($excerpt, 20);
                                         ?>
-                                        </p>
                                         <a class="btn btn-success" href="<?php the_permalink() ?>"><span class="glyphicon glyphicon-arrow-right"></span></a>
                                     </div>
                                 </div>

@@ -56,6 +56,9 @@ a:hover {
 .container {
     padding: 0;
 }
+.header-title {
+    min-height: 80px;
+}
 .row.row-with-vspace.site-content {
     margin: 0;
 }
@@ -323,6 +326,7 @@ th {
     /*    min-height: 80px;*/
     overflow: hidden;
     color: #440101;
+    margin-bottom: 20px;
 }
 .col-md-3 > a:hover {
     text-decoration: none;
@@ -474,7 +478,7 @@ a.btn.btn-success {
     background: -moz-linear-gradient(180deg, #af60dc, #8b03d9);  /*For Firefox 3.6 to 15 */
     background: linear-gradient(180deg, #af60dc, #8b03d9);  /*Standard syntax (must be last) */
 }
-.nav.navbar-nav  li.violet.active > a , .nav.navbar-nav li.violet > a:hover {
+.nav.navbar-nav li.violet.active > a , .nav.navbar-nav li.violet > a:hover {
     background: #d103e9;
     color: #fff !important;
 }
@@ -740,7 +744,7 @@ a.btn.btn-success {
         border-bottom: 1px solid #dedede;
     }
     .nav.navbar-nav li.red {
-        background: #fff;
+        background: #fff !important;
     }
     .col-md-12.content-area .site-main .row h3, .category.section h3 a{
         color: #d103e9;
@@ -761,57 +765,57 @@ a.btn.btn-success {
         border-bottom-left-radius: 0px;
         border-top-left-radius: 0px;
     }
-    #menu-item-575 {
-        background: #fff;
+    .nav.navbar-nav li.light.blue {
+        background: #fff !important;
     }
-    #menu-item-575 > a {
+    .nav.navbar-nav li.light.blue > a {
         background: -webkit-linear-gradient(180deg, #0cea45, #058325);  /*For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(180deg, #0cea45, #058325);  /*For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(180deg, #0cea45, #058325);  /*For Firefox 3.6 to 15 */
         background: linear-gradient(180deg, #0cea45, #058325);  /*Standard syntax (must be last) */
         width: 190px;
     }
-    #menu-item-532 {
-        background: #fff;
+    .nav.navbar-nav li.green {
+        background: #fff !important;
     }
-    #menu-item-532 > a {
+    .nav.navbar-nav li.green > a {
         background: -webkit-linear-gradient(180deg, #0cea45, #058325);  /*For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(180deg, #0cea45, #058325);  /*For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(180deg, #0cea45, #058325);  /*For Firefox 3.6 to 15 */
         background: linear-gradient(180deg, #0cea45, #058325);  /*Standard syntax (must be last) */
         width: 190px;
     }
-    #menu-item-532.active > a, #menu-item-532 > a:hover {
+    .nav.navbar-nav li.green.active > a, .nav.navbar-nav li.green > a:hover {
         background: #36c35a;
         border-bottom-left-radius: 0px;
         border-top-left-radius: 0px;
     }
-    #menu-item-532.active > a, #menu-item-532 > a:hover {
+    .nav.navbar-nav li.green.active > a, .nav.navbar-nav li.green > a:hover {
         background: #3c9188;
         border-bottom-left-radius: 0px;
         border-top-left-radius: 0px;
     }
-    #menu-item-16 {
-        background: #fff;
+    .nav.navbar-nav li.orange {
+        background: #fff !important;
     }
     .title > h1 {
         float: left;
     }
-    #menu-item-16.active > a, #menu-item-16 > a:hover {
+    .nav.navbar-nav li.orange.active > a, .nav.navbar-nav li.orange > a:hover {
         background: #ef6500;
         color: #fff !important;
     }
-    #menu-item-16 > a {
+    .nav.navbar-nav li.orange > a {
         background: -webkit-linear-gradient(180deg, #faa76a, #ff5c03);  /*For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(180deg, #faa76a, #ff5c03);  /*For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(180deg, #faa76a, #ff5c03);  /*For Firefox 3.6 to 15 */
         background: linear-gradient(180deg, #faa76a, #ff5c03);  /*Standard syntax (must be last) */
         width: 190px;
     }
-    #menu-item-198 {
-        background: #fff;
+    .nav.navbar-nav li.yellow {
+        background: #fff !important;
     }
-    #menu-item-198 > a {
+    .nav.navbar-nav li.yellow > a {
         background: #dccf00;
         background: rgba(250,212,0,1);
         background: -moz-linear-gradient(top, rgba(250,212,0,1) 0%, rgba(250,208,0,1) 35%, rgba(245,167,0,1) 100%);
@@ -823,25 +827,25 @@ a.btn.btn-success {
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fad400', endColorstr='#f5a700', GradientType=0 );
         width: 190px;
     }
-    #menu-item-198.sub-menu-columns.open > a , #menu-item-198.sub-menu-columns > a:hover{
+    .nav.navbar-nav li.yellow.sub-menu-columns.open > a , .nav.navbar-nav li.yellow.sub-menu-columns > a:hover{
         background: #f5a700 !important;
         color: #fff;
     }
     .recent h3 {
         color: #207c20;
     }
-    #menu-item-198 .sub-menu.dropdown-menu li {
+    .nav.navbar-nav li.yellow .sub-menu.dropdown-menu li {
         background: #f5a700 !important;
         color: #fff;
         float: none;
         width: 190px !important;
     }
-    #menu-item-198 .sub-menu.dropdown-menu li.active a , #menu-item-198 .sub-menu.dropdown-menu li a:hover {
+    .nav.navbar-nav li.yellow .sub-menu.dropdown-menu li.active a , .nav.navbar-nav li.yellow .sub-menu.dropdown-menu li a:hover {
         background: #edc307 !important;
         color: #fff;
     }
     #menu-primary-navigation li.light.blue {
-        background: #fff;
+        background: #fff !important;
     }
     #menu-primary-navigation li.light.blue > a {
         background: -webkit-linear-gradient(180deg, #0ce501, #4ec857);  /*For Safari 5.1 to 6.0 */
@@ -904,10 +908,10 @@ a.btn.btn-success {
         background: #d103e9;
         color: #fff !important;
     } 
-    #menu-item-94 {
-        background: #fff;
+    .navbar-nav li.violet {
+        background: #fff !important;
     }
-    #menu-item-94 > a {
+    .nav.navbar-nav li.violet > a {
         background: -webkit-linear-gradient(180deg, #af60dc, #8b03d9);  /*For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(180deg, #af60dc, #8b03d9);  /*For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(180deg, #af60dc, #8b03d9);  /*For Firefox 3.6 to 15 */
@@ -916,7 +920,7 @@ a.btn.btn-success {
         border-top-right-radius: 0px;
         width: 190px;
     }
-    #menu-item-94.active > a , #menu-item-94 > a:hover {
+    .navbar-nav li.violet.active > a , .nav.navbar-nav li.violet > a:hover {
         background: #d103e9;
         color: #fff !important;
         border-bottom-right-radius: 0px;
@@ -937,17 +941,17 @@ a.btn.btn-success {
         margin-left: 20px;
         margin-top: 25px;
     }
-    #menu-item-80 {
-        background: #fff
+    .nav.navbar-nav li.purple {
+        background: #fff !important
     }
-    #menu-item-80 > a {
+    .nav.navbar-nav li.purple > a {
         background: -webkit-linear-gradient(180deg, #f7b4fb, #f15efa);  /*For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(180deg, #f7b4fb, #f15efa);  /*For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(180deg, #f7b4fb, #f15efa);  /*For Firefox 3.6 to 15 */
         background: linear-gradient(180deg, #f7b4fb, #f15efa);  /*Standard syntax (must be last) */
         width: 190px;
     }
-    #menu-item-80.active > a , #menu-item-80 > a:hover {
+    .nav.navbar-nav li.purple.active > a , .nav.navbar-nav li.purple > a:hover {
         background: #c25dc8;
         color: #fff !important;
     }
@@ -1174,7 +1178,7 @@ a.btn.btn-success {
         background: -moz-linear-gradient(180deg, #af60dc, #8b03d9);  /*For Firefox 3.6 to 15 */
         background: linear-gradient(180deg, #af60dc, #8b03d9);  /*Standard syntax (must be last) */
     }
-    .nav.navbar-nav  li.violet.active > a , .nav.navbar-nav li.violet > a:hover {
+    .nav.navbar-nav li.violet.active > a , .nav.navbar-nav li.violet > a:hover {
         background: #d103e9;
         color: #fff !important;
     }
@@ -1225,9 +1229,18 @@ a.btn.btn-success {
     padding-bottom: 10px;
     line-height: 14px;
 }
-.pt-cv-content img{
+.post-thumbnail {
+    display: block;
+    min-height: 140px;
+}
+.post-thumbnail img{
     width: 150px;
-    height: 130px;       
+    height: 130px;    
+    margin-bottom: 10px;
+}
+span.author {
+    display: block;
+    min-height: 20px;
 }
 .title img{
     width: 130px;

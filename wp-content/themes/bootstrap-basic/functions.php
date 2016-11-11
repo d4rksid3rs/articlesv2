@@ -281,7 +281,7 @@ if (!function_exists('bootstrapBasicEnqueueScripts')) {
 }
 add_action('wp_enqueue_scripts', 'bootstrapBasicEnqueueScripts');
 
-
+add_filter( 'edit_post_link', '__return_false' );
 /**
  * admin page displaying help.
  */
