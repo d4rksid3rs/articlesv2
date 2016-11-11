@@ -164,11 +164,10 @@ function save_post() {
             $tacgia = 0;
         }
         if (isset($_POST['nguoi_viet'])) {
-            $tacgia = $_POST['nguoi_viet'];
+            $nguoi_viet = $_POST['nguoi_viet'];
         } else {
-            $tacgia = 0;
-        }
-
+            $nguoi_viet = 0;
+        }        
         // Add the content of the form to $post as an array
         $post = array(
             'post_title' => wp_strip_all_tags($title),
@@ -178,6 +177,8 @@ function save_post() {
             'post_type' => 'pasticco'  // Use a custom post type if you want to
         );
         $new_post_id = wp_insert_post($post);  // http://codex.wordpress.org/Function_Reference/wp_insert_post
+        add_post_meta($new_post_id, "nguoi_viet", $nguoi_viet); // Add Custom field
+        add_post_meta($new_post_id, "tac_gia", $tacgia); // Add Custom field
         if (!function_exists('wp_generate_attachment_metadata')) {
             require_once(ABSPATH . "wp-admin" . '/includes/image.php');
             require_once(ABSPATH . "wp-admin" . '/includes/file.php');
@@ -196,7 +197,7 @@ function save_post() {
             //and if you want to set that image as Post  then use:
             update_post_meta($new_post_id, '_thumbnail_id', $attach_id);
         }
-        add_post_meta($new_post_id, "nguoi_viet", $tacgia); // Add Custom field
+        
         $location = get_permalink(45); // redirect location, should be login page         
         echo "<meta http-equiv='refresh' content='0;url=$location' />";
         exit;

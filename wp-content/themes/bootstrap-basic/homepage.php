@@ -12,7 +12,7 @@ get_header();
 $main_column_size = 12;
 global $post;
 ?> 
-<?php // get_sidebar('left');                                               ?> 
+<?php // get_sidebar('left');                                                ?> 
 <div class="col-md-<?php echo $main_column_size; ?> content-area" id="main-column">
     <main id="main" class="site-main" role="main">  
         <?php
@@ -41,7 +41,8 @@ global $post;
                         <div class="col-md-3">
                             <div class="header-title">
                                 <a class="title" href="<?php the_permalink() ?>"> <h4 class="uppercase"><?php the_title() ?></h4></a>
-                                <span class="author"><b> <a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>"><?php $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true); ?>
+                                <span class="author"><b> <a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>">
+                                            <?php $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true); ?>
                                             <?php
                                             $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
                                             if ($tac_gia_id):
@@ -68,7 +69,7 @@ global $post;
                                 <?php endif; ?>
                             </div>
                             <div class="pt-cv-content">
-<!--                                <br />-->
+                                <!--                                <br />-->
                                 <?php
                                 $i ++;
                                 $excerpt = get_the_excerpt();
@@ -145,12 +146,12 @@ global $post;
                                         <?php endif; ?>
                                     </div>
                                     <div class="pt-cv-content">
-<!--                                        <?php if (has_post_thumbnail()) : ?>
-                                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                                                <img src="<?php the_post_thumbnail_url(); ?>"/>
-                                            </a>
+                                        <!--                                        <?php if (has_post_thumbnail()) : ?>
+                                                                                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                                                                            <img src="<?php the_post_thumbnail_url(); ?>"/>
+                                                                                        </a>
                                         <?php endif; ?>
-                                        <br />-->
+                                                                                <br />-->
                                         <?php
                                         $i ++;
                                         $excerpt = get_the_excerpt();

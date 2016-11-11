@@ -60,10 +60,17 @@ $main_column_size = 9;
                             <td>
                                 <p>
                                     <b>
+                                        <?php $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true); ?>
                                         <?php
-                                        $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);                                    
-                                        echo $nguoi_viet_id;
-                                        ?>
+                                        $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
+                                        if ($tac_gia_id):
+                                            echo get_the_title($tac_gia_id);
+                                        elseif ($nguoi_viet_id) :
+                                            echo $nguoi_viet_id;
+                                        else:
+                                            echo 'Không có tác giả';
+                                            ?>
+                                        <?php endif; ?> 
                                     </b>
                                 </p>
                             </td>
@@ -133,12 +140,23 @@ $main_column_size = 9;
                                             <img src="<?php the_post_thumbnail_url(); ?>"/>
                                         <?php endif; ?>
                                     </a></p></td>
-                            <td><p><b><?php
+                            <td>
+                                <p>
+                                    <b> 
+                                        <?php $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true); ?>
+                                        <?php
                                         $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
-                                         echo the_ID();
-                                        echo $nguoi_viet_id;  die;                                     
-                                        ?>
-                                    </b></p></td>
+                                        if ($tac_gia_id):
+                                            echo get_the_title($tac_gia_id);
+                                        elseif ($nguoi_viet_id) :
+                                            echo $nguoi_viet_id;
+                                        else:
+                                            echo 'Không có tác giả';
+                                            ?>
+                                        <?php endif; ?> 
+                                    </b>
+                                </p>
+                            </td>
                             <td><p><?php show_publish_button(); ?></p></td>
                         </tr>
 

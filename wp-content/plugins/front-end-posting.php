@@ -29,7 +29,6 @@ function admin_post_frontend() {
         <p><label for="title">Tên bài</label><br />
 
             <input type="text" id="title" value="" tabindex="1" size="20" name="title" />
-
         </p> 
 
         <p><label for="title">Tác giả</label><br />
