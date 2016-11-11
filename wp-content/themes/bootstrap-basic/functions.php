@@ -325,3 +325,15 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/widgets/BootstrapBasicSearchWidget.php';
 require get_template_directory() . '/inc/template-widgets-hook.php';
 
+// publish button
+function show_publish_button() {
+    Global $post;
+//only print fi admin
+    if (current_user_can('manage_options')) {
+        echo '
+
+<form action="" method="POST" name="front_end_publish"><input id="pid" type="hidden" name="pid" value="' . $post->ID . '" />
+<input id="FE_PUBLISH" type="hidden" name="FE_PUBLISH" value="FE_PUBLISH" />
+<input class="btn btn-success" id="submit" type="submit" name="submit" value="Phê duyệt" /></form>';
+    }
+}

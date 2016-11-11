@@ -57,11 +57,16 @@ $main_column_size = 9;
                                             <img src="<?php the_post_thumbnail_url(); ?>"/>
                                         <?php endif; ?>
                                     </a></p></td>
-                            <td><p><b><?php
-                                        $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
+                            <td>
+                                <p>
+                                    <b>
+                                        <?php
+                                        $nguoi_viet_id = get_post_meta(the_ID(), 'nguoi_viet', true);                                    
                                         echo $nguoi_viet_id;
                                         ?>
-                                    </b></p></td>
+                                    </b>
+                                </p>
+                            </td>
                             <td><p><?php show_publish_button(); ?></p></td>
                         </tr>
 
@@ -130,7 +135,8 @@ $main_column_size = 9;
                                     </a></p></td>
                             <td><p><b><?php
                                         $nguoi_viet_id = get_post_meta($post->ID, 'nguoi_viet', true);
-                                        echo $nguoi_viet_id;
+                                         echo the_ID();
+                                        echo $nguoi_viet_id;  die;                                     
                                         ?>
                                     </b></p></td>
                             <td><p><?php show_publish_button(); ?></p></td>
