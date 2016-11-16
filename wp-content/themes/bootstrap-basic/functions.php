@@ -11,7 +11,6 @@
 if (!isset($content_width)) {
     $content_width = 1170;
 }
-include_once( 'tutsplus-actions.php' );
 
 if (!function_exists('bootstrapBasicSetup')) {
 
