@@ -11,7 +11,7 @@
 if (!isset($content_width)) {
     $content_width = 1170;
 }
-
+include_once( 'tutsplus-actions.php' );
 
 if (!function_exists('bootstrapBasicSetup')) {
 
@@ -281,7 +281,7 @@ if (!function_exists('bootstrapBasicEnqueueScripts')) {
 }
 add_action('wp_enqueue_scripts', 'bootstrapBasicEnqueueScripts');
 
-add_filter( 'edit_post_link', '__return_false' );
+add_filter('edit_post_link', '__return_false');
 /**
  * admin page displaying help.
  */
@@ -337,6 +337,7 @@ function show_publish_button() {
 <input class="btn btn-success" id="submit" type="submit" name="submit" value="Phê duyệt" /></form>';
     }
 }
+
 //function to update post status
 function change_post_status($post_id, $status) {
     $current_post = get_post($post_id, 'ARRAY_A');
@@ -370,3 +371,24 @@ function searchfilter($query) {
 }
 
 add_filter('pre_get_posts', 'searchfilter');
+
+function generate_post_select($select_id, $post_type, $selected = 0) {
+    $post_type_object = get_post_type_object($post_type);
+    $label = $post_type_object->label;
+    $posts = get_posts(array('post_type' => $post_type, 'post_status' => 'publish', 'suppress_filters' => false, 'posts_per_page' => -1));
+    echo '<select name="' . $select_id . '" id="' . $select_id . '">';
+//    echo '<option value = "" >All ' . $label . ' </option>';
+    foreach ($posts as $post) {
+        echo '<option value="', $post->ID, '"', $selected == $post->ID ? ' selected="selected"' : '', '>', $post->post_title, '</option>';
+    }
+    echo '</select>';
+}
+
+//add_action('template_redirect', 'wpse52455_redirect');
+//
+//function wpse52455_redirect() {
+//    $location = get_permalink(45);
+//    wp_redirect($location);
+////    exit();
+//}
+
