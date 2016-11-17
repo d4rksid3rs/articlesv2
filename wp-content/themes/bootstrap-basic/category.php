@@ -33,29 +33,35 @@ $main_column_size = 9;
                 <?php if ($custom_query->have_posts()) : ?>
                     <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                         <div class="col-md-3">
-                            <a class="title" href="<?php the_permalink() ?>"> <h4><?php the_title() ?></h4></a>
-                            <span class="author"><b><a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>">
-                                        <?php
-                                        $tac_gia_id = get_post_meta($post->ID, 'tac_gia', true);
-                                        echo get_the_title($tac_gia_id);
-                                        ?>
-                                        <?php if (has_post_thumbnail()) : ?>
-                                            <img src="<?php the_post_thumbnail_url(); ?>" title="<?php the_title_attribute(); ?>"/>
-                                        <?php endif; ?>
-                                    </a></b></span>
-                            <p><small><i>Bài viết được đẳng bởi:</i><b>
-                                    <?php
-                                    $a_id = $post->post_author;
-                                    $a_name = get_the_author_meta('display_name', $a_id);
-                                    echo $a_name;
-                                    ?></b></small></p>
-                            <div class="pt-cv-content">
-                                <?php
-                                $excerpt = get_the_excerpt();
-                                echo string_limit_words($excerpt, 25);
-                                ?>                      
-                            </div>
-                            <a class="btn btn-success" href="<?php the_permalink() ?>">Xem chi tiết <span class="glyphicon glyphicon-arrow-right"></span></a>
+							<div class="header-title">
+								<a class="title" href="<?php the_permalink() ?>"> <h4><?php the_title() ?></h4></a>
+								<span class="author"><b><a href="<?php the_permalink(get_post_meta($post->ID, 'tac_gia', true)) ?>">
+											<?php
+											$tac_gia_id = get_post_meta($post->ID, 'tac_gia', true);
+											echo get_the_title($tac_gia_id);
+											?>
+										</a></b></span>
+								<p><small><i>Bài viết được đẳng bởi:</i><b>
+										<?php
+										$a_id = $post->post_author;
+										$a_name = get_the_author_meta('display_name', $a_id);
+										echo $a_name;
+										?></b></small></p>
+								</div>
+								<div class="post-thumbnail">
+									<?php if (has_post_thumbnail()) : ?>
+										<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+											<img src="<?php the_post_thumbnail_url(); ?>"/>
+										</a>
+									<?php endif; ?>
+								</div>
+								<div class="pt-cv-content">
+									<?php
+									$excerpt = get_the_excerpt();
+									echo string_limit_words($excerpt, 25);
+									?>                      
+								</div>
+								<a class="btn btn-success" href="<?php the_permalink() ?>">Xem chi tiết <span class="glyphicon glyphicon-arrow-right"></span></a>
                         </div>
 
                     <?php endwhile; ?> 
