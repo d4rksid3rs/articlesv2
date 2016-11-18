@@ -1029,6 +1029,10 @@ a.btn.btn-success {
     .nav.navbar-nav li.orange.author .sub-menu.dropdown-menu {
         background: none !important;
     }
+    .post-thumbnail img {
+        height: 120px !important;
+        width: 125px !important;
+    }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
     .navbar-default .navbar-nav > li > a {
@@ -1254,4 +1258,7 @@ input#submit {
 }
 .glyphicon.glyphicon-arrow-right {
     font-size: 16px;
+}
+img {
+    width: 100%;
 }

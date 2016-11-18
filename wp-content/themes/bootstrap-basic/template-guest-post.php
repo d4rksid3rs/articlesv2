@@ -127,6 +127,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
             <?php wp_nonce_field('name_of_my_action', 'name_of_nonce_field'); ?>
 
         </form>
+        <div class="clearfix"></div>
     </div>
     <?php get_sidebar('right'); ?> 
 <?php else : ?>
@@ -138,7 +139,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
                 <input type="text" id="title" value="" tabindex="1" size="20" name="title" />
             </p> 
             <p><label for="title">Thêm tác giả</label><br />
-                <?php generate_post_select('nguoi_viet', 'article-author', 0) ?>
+                <input type="text" id="nguoi_viet" value="" tabindex="1" size="20" name="nguoi_viet" />
 
             </p>
             <p>
@@ -174,6 +175,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
             <?php wp_nonce_field('name_of_my_action', 'name_of_nonce_field'); ?>
 
         </form>
+        <div class="clearfix"></div>
     </div>
     <?php get_sidebar('left'); ?> 
     <?php get_sidebar('right'); ?> 

@@ -128,6 +128,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
             <?php wp_nonce_field('name_of_my_action', 'name_of_nonce_field'); ?>
 
         </form>
+        <div class="clearfix"></div>
     </div>
     <?php get_sidebar('right'); ?> 
 <?php else : ?>
@@ -176,6 +177,7 @@ $main_column_size = bootstrapBasicGetMainColumnSize();
             <?php wp_nonce_field('name_of_my_action', 'name_of_nonce_field'); ?>
 
         </form>
+        <div class="clearfix"></div>
     </div>
     <?php get_sidebar('left'); ?> 
     <?php get_sidebar('right'); ?> 
